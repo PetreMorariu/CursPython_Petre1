@@ -24,8 +24,8 @@ def verificare_task(task):
     with open("todo_taskuri.csv", 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            if row == task:
-                my_validare = True
+            if str(row) == str(task):
+               my_validare = True
     return my_validare
 
 # adaugare si verificare ca  un task nou are o categorie valida
@@ -42,11 +42,13 @@ def insert_new_task(task):
         if test == 3:
             with open("todo_taskuri.csv", 'a+', newline='') as file:
                 csv_writer = csv.writer(file)
-                csv_writer.writerow(task)
+                if verificare_task(task):
+                    print("Exista taskul!")
+                else:
+                    csv_writer.writerow(task)
         else:
-            print("Categoria nu exista!")
-        task = eliminare_spatii(input("task nou:\n").split(sep=","))
-        verificare_task(task)
+            print("Nu exista categoria!")
+        task = eliminare_spatii(input("New task\n").split(sep=','))
     else:
         print("S-au introdus task-urile valide!")
 
@@ -110,11 +112,8 @@ if __name__ == '__main__':
     csv_writer.writerow(['Task', 'Data', 'Responsabil', 'Categorie'])
 
  #adaugare de taskuri
-task = eliminare_spatii(input("Introduceti task-urile dorite cu formatul:\nNume,Data,Responsabilul,Categorie\nType 'exit' to finish\n").split(sep=","))
-if verificare_task(task):
-     print("Taskul exista deja!")
-else:
-     insert_new_task(task)
+print("Introduceti task-urile dorite cu formatul:\nNume,Data,Responsabilul,Categorie\n 'exit' pentru terminare taskuri\n")
+insert_new_task(eliminare_spatii(input().split(sep=',')))
 
 # meniu_selectat este lista cu valorile cu care vreau sa lucrez
 meniu_selectat = todo_Meniul.meniu()
@@ -157,15 +156,11 @@ if meniu_selectat[0] == '3':
 if meniu_selectat[0] == '4':
    print("New task:")
    task = eliminare_spatii(input().split(sep=","))
-   if verificare_task(task):
-       insert_new_task(task)
-   else:
-       print("Taskul exista deja!")
+   insert_new_task(task)
 if meniu_selectat[0] == '5':
     pass
 if meniu_selectat[0] == '6':
     pass
-# else:
-#     exit()
+
 
 
