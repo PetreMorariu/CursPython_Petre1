@@ -20,13 +20,12 @@ def insert_categorii(categorie):
 
 #Verificare ca task nu mai exista deja
 def verificare_task(task):
+    my_validare = False
     with open("todo_taskuri.csv", 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             if row == task:
                 my_validare = True
-            else:
-                my_validare = False
     return my_validare
 
 # adaugare si verificare ca  un task nou are o categorie valida
@@ -47,6 +46,7 @@ def insert_new_task(task):
         else:
             print("Categoria nu exista!")
         task = eliminare_spatii(input("task nou:\n").split(sep=","))
+        verificare_task(task)
     else:
         print("S-au introdus task-urile valide!")
 
