@@ -6,7 +6,7 @@ def meniu():
     1. Listare date 
     2. Sortare: se alege o opțiune din cele 8 de mai jos:
     3. Filtrare date
-    4. Adauga un nou task/taskuri
+    4. Adauga un nou task
     5. Editarea detaliilor referitoare la task, dată, persoană sau categorie dintr-un anumit task
     6. Ștergerea unui task din lista inițială.
     """)

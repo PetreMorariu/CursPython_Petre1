@@ -1,13 +1,14 @@
 import copy
 import csv
 import pandas
+from prompt_toolkit.key_binding.bindings.named_commands import uppercase_word
+
 import todo_Meniul
 import todo_edit
 
 
 
 #  citire si adaugare categorie
-
 def citire_categorii():
     print("Introduceti categoriile dorite cu virgula ',' intre ele:")
     categorii_for_csv = input().split(sep=",")
