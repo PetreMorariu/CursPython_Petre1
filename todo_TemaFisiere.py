@@ -2,6 +2,7 @@ import copy
 import csv
 import pandas
 import todo_Meniul
+import todo_edit
 
 
 
@@ -34,12 +35,12 @@ def insert_new_task(task):
         categorie_de_verificat = copy.deepcopy(task[-1])
         with open("todo_categorii.csv", "r") as file:
             reader = csv.reader(file, delimiter=',')
-            test = 1
+            categorie_valida = 0
             for row in reader:
                 for field in row:
                     if field == categorie_de_verificat:
-                        test = 3
-        if test == 3:
+                        categorie_valida = 1
+        if categorie_valida == 1:
             with open("todo_taskuri.csv", 'a+', newline='') as file:
                 csv_writer = csv.writer(file)
                 if verificare_task(task):
@@ -96,24 +97,22 @@ def eliminare_spatii(task1):
 
 
 
-#Editare de date din task
-def editare_task(task):
-    pass
-
 
 if __name__ == '__main__':
+ print("Y pentru adaugare date initiale sau orice pentru nu")
+ y = input()
+if y == 'Y':
+    #adaugare de categorii in fisier citite de la tastatura
+    insert_categorii(citire_categorii())
 
- #adaugare de categorii in fisier citite de la tastatura
- insert_categorii(citire_categorii())
+    #Adaug nume coloane in todo_taskuri.csv2
+    with open("todo_taskuri.csv", 'w', newline='') as file:
+        csv_writer = csv.writer(file,delimiter=',')
+        csv_writer.writerow(['Task', 'Data', 'Responsabil', 'Categorie'])
 
- #Adaug nume coloane in todo_taskuri.csv2
- with open("todo_taskuri.csv", 'w', newline='') as file:
-    csv_writer = csv.writer(file,delimiter=',')
-    csv_writer.writerow(['Task', 'Data', 'Responsabil', 'Categorie'])
-
- #adaugare de taskuri
-print("Introduceti task-urile dorite cu formatul:\nNume,Data,Responsabilul,Categorie\n 'exit' pentru terminare taskuri\n")
-insert_new_task(eliminare_spatii(input().split(sep=',')))
+     #adaugare de taskuri
+    print("Introduceti task-urile dorite cu formatul:\nNume,Data,Responsabilul,Categorie\n 'exit' pentru terminare taskuri\n")
+    insert_new_task(eliminare_spatii(input().split(sep=',')))
 
 # meniu_selectat este lista cu valorile cu care vreau sa lucrez
 meniu_selectat = todo_Meniul.meniu()
@@ -158,7 +157,7 @@ if meniu_selectat[0] == '4':
    task = eliminare_spatii(input().split(sep=","))
    insert_new_task(task)
 if meniu_selectat[0] == '5':
-    pass
+    todo_edit.editare_task()
 if meniu_selectat[0] == '6':
     pass
 
