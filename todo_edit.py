@@ -8,7 +8,6 @@ def editare_task():
     # creaza un dictionar cu taskurile si le indexeaza
     data = pd.read_csv('todo_taskuri.csv')
     data_dict = data.to_dict(orient='index')
-    print(data_dict)
 
     #Afiseaza taskurile din csv file cu un index pentru a putea alege taskul
     csvData = pandas.read_csv('todo_taskuri.csv')
@@ -20,8 +19,8 @@ def editare_task():
     nr_task = int(input())
 
     print("Editati task-ul dorit:")
-    edit_task = (input().split(sep=','))
-
+    edit_task_cu_spatii = (input().split(sep=','))
+    edit_task = [' '.join(string.split()) for string in edit_task_cu_spatii]
 
     #editeaza task-ul dorit
     data_dict[nr_task] = {'Task':edit_task[0],

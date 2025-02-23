@@ -114,52 +114,59 @@ if y == 'Y':
     print("Introduceti task-urile dorite cu formatul:\nNume,Data,Responsabilul,Categorie\n 'exit' pentru terminare taskuri\n")
     insert_new_task(eliminare_spatii(input().split(sep=',')))
 
-# meniu_selectat este lista cu valorile cu care vreau sa lucrez
-meniu_selectat = todo_Meniul.meniu()
-if meniu_selectat[0] == '1':
-    meniul1()
-if meniu_selectat[0] == '2':
-    if meniu_selectat[1] == '1':
-        sort_ascendendt("Task")
-    if meniu_selectat[1] == '2':
-        sort_descendent("Task")
-    if meniu_selectat[1] == '3':
-        sort_ascendendt("Data")
-    if meniu_selectat[1] == '4':
-        sort_descendent("Data")
-    if meniu_selectat[1] == '5':
-        sort_ascendendt("Responsabil")
-    if meniu_selectat[1] == '6':
-        sort_descendent("Responsabil")
-    if meniu_selectat[1] == '7':
-        sort_ascendendt("Categorie")
-    if meniu_selectat[1] == '8':
-        sort_descendent("Categorie")
-if meniu_selectat[0] == '3':
-    #Meniul 3->1 Task
-    if meniu_selectat[2] == '1':
-        print("Introduceti stringul de filtrare:")
-        filtrare_date(eliminare_spatii(input().split()),0)
-    #Meniul 3->2 Data
-    if meniu_selectat[2] == '2':
-        print("Introduceti stringul de filtrare:")
-        filtrare_date(eliminare_spatii(input().split(sep=",")), 1)
-    # Meniul 3->3 Responsabil
-    if meniu_selectat[2] == '3':
-        print("Introduceti stringul de filtrare:")
-        filtrare_date(eliminare_spatii(input().split(sep=",")), 2)
-    # Meniul 3->4 Categorie
-    if meniu_selectat[2] == '4':
-        print("Introduceti stringul de filtrare:")
-        filtrare_date(input().split(), 3)
-if meniu_selectat[0] == '4':
-   print("New task:")
-   task = eliminare_spatii(input().split(sep=","))
-   insert_new_task(task)
-if meniu_selectat[0] == '5':
-    todo_edit.editare_task()
-if meniu_selectat[0] == '6':
-    pass
 
+
+continua_optiune = 'Continua'
+while continua_optiune != 'exit':
+    # meniu_selectat este lista cu valorile cu care vreau sa lucrez
+    meniu_selectat = todo_Meniul.meniu()
+    if meniu_selectat[0] == '1':
+        meniul1()
+    if meniu_selectat[0] == '2':
+        if meniu_selectat[1] == '1':
+            sort_ascendendt("Task")
+        if meniu_selectat[1] == '2':
+            sort_descendent("Task")
+        if meniu_selectat[1] == '3':
+            sort_ascendendt("Data")
+        if meniu_selectat[1] == '4':
+            sort_descendent("Data")
+        if meniu_selectat[1] == '5':
+            sort_ascendendt("Responsabil")
+        if meniu_selectat[1] == '6':
+            sort_descendent("Responsabil")
+        if meniu_selectat[1] == '7':
+            sort_ascendendt("Categorie")
+        if meniu_selectat[1] == '8':
+            sort_descendent("Categorie")
+    if meniu_selectat[0] == '3':
+        #Meniul 3->1 Task
+        if meniu_selectat[2] == '1':
+            print("Introduceti stringul de filtrare:")
+            filtrare_date(eliminare_spatii(input().split()),0)
+        #Meniul 3->2 Data
+        if meniu_selectat[2] == '2':
+            print("Introduceti stringul de filtrare:")
+            filtrare_date(eliminare_spatii(input().split(sep=",")), 1)
+        # Meniul 3->3 Responsabil
+        if meniu_selectat[2] == '3':
+            print("Introduceti stringul de filtrare:")
+            filtrare_date(eliminare_spatii(input().split(sep=",")), 2)
+        # Meniul 3->4 Categorie
+        if meniu_selectat[2] == '4':
+            print("Introduceti stringul de filtrare:")
+            filtrare_date(input().split(), 3)
+    if meniu_selectat[0] == '4':
+       print("New task:")
+       task = eliminare_spatii(input().split(sep=","))
+       insert_new_task(task)
+    if meniu_selectat[0] == '5':
+        todo_edit.editare_task()
+    if meniu_selectat[0] == '6':
+        pass
+    print("Scrie DA daca vrei sa alegi alta optiune sau 'exit' pentru iesire din program")
+    continua_optiune = input()
+else:
+    exit()
 
 
