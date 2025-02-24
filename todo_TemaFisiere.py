@@ -1,8 +1,6 @@
 import copy
 import csv
 import pandas
-from prompt_toolkit.key_binding.bindings.named_commands import uppercase_word
-
 import todo_Meniul
 import todo_edit
 
@@ -164,8 +162,8 @@ while continua_optiune != 'exit':
     if meniu_selectat[0] == '5':
         todo_edit.editare_task()
     if meniu_selectat[0] == '6':
-        pass
-    print("Scrie DA daca vrei sa alegi alta optiune sau 'exit' pentru iesire din program")
+        todo_edit.stergere_task()
+    print("Apasa orice daca vrei sa alegi alta optiune sau 'exit' pentru iesire din program")
     continua_optiune = input()
 else:
     exit()
